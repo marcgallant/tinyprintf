@@ -9,8 +9,7 @@ LDLIBS=-lcriterion
 SRC=src/tinyprintf.c
 OBJ=$(SRC:.c=.o)
 
-TEST=tests/str_revert.c \
-     tests/disp_str.c \
+TEST=tests/disp_str.c \
      tests/my_itoa_base.c \
      tests/basics.c
 

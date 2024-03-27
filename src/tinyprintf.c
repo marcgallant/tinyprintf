@@ -2,7 +2,6 @@
 
 #include <stdarg.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 int disp_str(char *s)
 {
@@ -84,14 +83,14 @@ int tinyprintf(const char *format, ...)
     {
         switch (format[i])
         {
-        case '%':
-            i++;
-            len += parser(format[i], ap);
-            break;
-        default:
-            putchar(format[i]);
-            len++;
-            break;
+            case '%':
+                i++;
+                len += parser(format[i], ap);
+                break;
+            default:
+                putchar(format[i]);
+                len++;
+                break;
         }
         i++;
     }

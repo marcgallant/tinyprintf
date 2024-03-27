@@ -7,7 +7,7 @@
 /**
  * \brief Display the string on stdout
  *
- * Display s or null
+ * Display s or (null)
  *
  * \param s String to display
  * \return Length of the displayed string
@@ -15,28 +15,21 @@
 int disp_str(char *s);
 
 /**
- * \brief Reverse the string in place
- *
- * \param arr String to revert
- */
-void str_revert(char *arr);
-
-/**
  * \brief Convert to string, and display it on stdout
  *
- * \param value Value to convert
+ * \param nb Value to convert
  * \return Length of the displayed string
  */
-int my_itoa(int value);
+int my_itoa(int nb);
 
 /**
  * \brief Convert to string in the according base, and display it on stdout
  *
- * \param value Value to convert
+ * \param nb Value to convert
  * \param base Length of the base string
  * \return Length of the displayed string
  */
-int my_itoa_base(unsigned int value, size_t base);
+int my_itoa_base(unsigned int nb, size_t base);
 
 /**
  * \brief Format the string and display it on stdout
