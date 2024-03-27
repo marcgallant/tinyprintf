@@ -18,26 +18,26 @@ int disp_str(char *s)
     return i;
 }
 
-int my_itoa_base(unsigned int value, const char *base, size_t i)
+int my_itoa_base(unsigned int nb, const char *base, size_t i)
 {
     int len = 0;
-    if (value >= i)
-        len += my_itoa_base(value / i, base, i);
+    if (nb >= i)
+        len += my_itoa_base(nb / i, base, i);
 
-    putchar(base[value % i]);
+    putchar(base[nb % i]);
     return len + 1;
 }
 
-int my_itoa(int value)
+int my_itoa(int nb)
 {
     int len = 0;
-    if (value < 0)
+    if (nb < 0)
     {
         putchar('-');
-        value *= -1;
+        nb *= -1;
         len++;
     }
-    return len + my_itoa_base(value, "0123456789", 10);
+    return len + my_itoa_base(nb, "0123456789", 10);
 }
 
 int parser(char c, va_list ap)
