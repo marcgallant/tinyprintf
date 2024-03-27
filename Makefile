@@ -3,8 +3,10 @@
 # Compilers vars
 CC=gcc
 CFLAGS=-std=c99 -Wall -Wextra -Werror -Wvla -pedantic
+LDFLAGS=-fsanitize=address -g
+LDLIBS=-lcriterion
 
-SRC=src/tinyprintf.c main.c
+SRC=src/tinyprintf.c
 OBJ=$(SRC:.c=.o)
 
 TEST=tests/str_revert.c \
@@ -15,7 +17,6 @@ TEST=tests/str_revert.c \
 OBJ_TEST= $(TEST:.c=.o)
 
 all: $(OBJ)
-	$(CC) $(CFLAGS) -o tinyprintf $(OBJ)
 
 check: $(OBJ) $(OBJ_TEST)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -o tinyprintf $(OBJ) $(OBJ_TEST)
