@@ -33,11 +33,10 @@ int my_itoa(int value);
  * \brief Convert to string in the according base, and display it on stdout
  *
  * \param value Value to convert
- * \param base Base to convert into
- * \param i Length of the base string
+ * \param base Length of the base string
  * \return Length of the displayed string
  */
-int my_itoa_base(unsigned int value, const char *base, size_t i);
+int my_itoa_base(unsigned int value, size_t base);
 
 /**
  * \brief Format the string and display it on stdout

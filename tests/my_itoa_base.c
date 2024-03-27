@@ -32,7 +32,7 @@ Test(my_itoa_base, classic)
 {
     cr_redirect_stdout();
 
-    my_itoa_base(255, "0123456789abcdef", 16);
+    my_itoa_base(255, 16);
 
     fflush(NULL);
     char *expected = "ff";
@@ -56,7 +56,7 @@ Test(my_itoa_base, zero)
 {
     cr_redirect_stdout();
 
-    my_itoa_base(0, "0123456789abcdef", 16);
+    my_itoa_base(0, 16);
 
     fflush(NULL);
     char *expected = "0";

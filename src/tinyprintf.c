@@ -9,7 +9,7 @@ int disp_str(char *s)
     if (!s)
         return disp_str("(null)");
 
-    size_t i = 0;
+    int i = 0;
     while (s[i] != '\0')
     {
         putchar(s[i++]);
@@ -18,13 +18,14 @@ int disp_str(char *s)
     return i;
 }
 
-int my_itoa_base(unsigned int nb, const char *base, size_t i)
+int my_itoa_base(unsigned int nb, size_t base)
 {
+    const char *tmp = "0123456789abcdef";
     int len = 0;
-    if (nb >= i)
-        len += my_itoa_base(nb / i, base, i);
+    if (nb >= base)
+        len += my_itoa_base(nb / base, base);
 
-    putchar(base[nb % i]);
+    putchar(tmp[nb % base]);
     return len + 1;
 }
 
@@ -37,7 +38,7 @@ int my_itoa(int nb)
         nb *= -1;
         len++;
     }
-    return len + my_itoa_base(nb, "0123456789", 10);
+    return len + my_itoa_base(nb, 10);
 }
 
 int parser(char c, va_list ap)
@@ -52,11 +53,11 @@ int parser(char c, va_list ap)
     case 'd':
         return my_itoa(va_arg(ap, int));
     case 'u':
-        return my_itoa_base(va_arg(ap, unsigned int), "0123456789", 10);
+        return my_itoa_base(va_arg(ap, unsigned int), 10);
     case 'o':
-        return my_itoa_base(va_arg(ap, unsigned int), "01234567", 8);
+        return my_itoa_base(va_arg(ap, unsigned int), 8);
     case 'x':
-        return my_itoa_base(va_arg(ap, unsigned int), "0123456789abcdef", 16);
+        return my_itoa_base(va_arg(ap, unsigned int), 16);
     default: {
         int len = 0;
         if (c != '%')
