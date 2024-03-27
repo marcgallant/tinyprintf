@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BUFF_SIZE 16
-
 int disp_str(char *s)
 {
     if (!s)
@@ -20,79 +18,26 @@ int disp_str(char *s)
     return i;
 }
 
-void str_revert(char *s)
+int my_itoa_base(unsigned int value, const char *base, size_t i)
 {
-    size_t n = 0;
-    while (s[n] != '\0')
-    {
-        n++;
-    }
+    int len = 0;
+    if (value >= i)
+        len += my_itoa_base(value / i, base, i);
 
-    for (size_t i = 0; i < n / 2; i++)
-    {
-        char tmp = s[i];
-        s[i] = s[n - i - 1];
-        s[n - i - 1] = tmp;
-    }
+    putchar(base[value % i]);
+    return len + 1;
 }
 
 int my_itoa(int value)
 {
-    if (value == 0)
+    int len = 0;
+    if (value < 0)
     {
-        putchar('0');
-        return 1;
+        putchar('-');
+        value *= -1;
+        len++;
     }
-
-    char *s = malloc(BUFF_SIZE);
-
-    int neg = value < 0;
-    if (neg)
-        value = -value;
-
-    size_t j = 0;
-    while (value != 0)
-    {
-        s[j++] = value % 10 + '0';
-        value /= 10;
-    }
-
-    if (neg)
-        s[j++] = '-';
-
-    s[j] = '\0';
-
-    str_revert(s);
-    int len = disp_str(s);
-    free(s);
-
-    return len;
-}
-
-int my_itoa_base(unsigned int value, const char *base, size_t i)
-{
-    if (value == 0)
-    {
-        putchar(*base);
-        return 1;
-    }
-
-    char *s = malloc(BUFF_SIZE);
-
-    size_t j = 0;
-    while (value != 0)
-    {
-        s[j++] = base[value % i];
-        value /= i;
-    }
-
-    s[j] = '\0';
-
-    str_revert(s);
-    int len = disp_str(s);
-    free(s);
-
-    return len;
+    return len + my_itoa_base(value, "0123456789", 10);
 }
 
 int parser(char c, va_list ap)
