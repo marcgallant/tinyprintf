@@ -13,7 +13,6 @@ int disp_str(char *s)
     {
         putchar(s[i++]);
     }
-
     return i;
 }
 
@@ -23,7 +22,7 @@ int my_itoa_base(unsigned int nb, size_t base)
     int len = 0;
     if (nb >= base)
         len += my_itoa_base(nb / base, base);
-
+    
     putchar(tmp[nb % base]);
     return len + 1;
 }
@@ -73,9 +72,10 @@ int parser(char c, va_list ap)
 
 int tinyprintf(const char *format, ...)
 {
+    if (format == NULL)
+        return -1;
     va_list ap;
     va_start(ap, format);
-
     int len = 0;
     size_t i = 0;
 
